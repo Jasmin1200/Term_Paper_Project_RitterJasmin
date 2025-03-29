@@ -262,3 +262,14 @@ text(kresult$results$exclus, kresult$results$semcoh,
 #Evaluate Actual Topics
 topicQuality(model = datensatz_themen,
              documents = dfm_Datensatz_Zeitungsartikel_tm)
+
+#Plot: Häufigkeit der Genres, unterteilt nach der Artikelquelle
+unique(btw_Datensatz_sample$artikelquelle)
+
+library(ggplot2)
+library(RColorBrewer)
+
+ggplot(genre_artikelquelle_counts, aes(x = genre, y = n, fill = artikelquelle)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Genre", y = "Anzahl der Artikel", fill = "Artikelquelle")
+# Für inhalte und parteien seperat schauen

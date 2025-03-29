@@ -122,33 +122,17 @@ parteien_docs <- btw_Datensatz_sample %>%
 head(parteien_docs)
 head(btw_Datensatz_sample %>% filter(genre == "parteien"))
 
-#Plot dazu
-library(dplyr)
-library(ggplot2)
-
-# Zählen der Dokumente pro Genre und Artikelquelle
-genre_artikelquelle_counts <- btw_Datensatz_sample %>%
-  count(genre, artikelquelle) %>%
-  arrange(desc(n))
-
-# Plot: Häufigkeit der Genres, unterteilt nach der Artikelquelle
-ggplot(genre_artikelquelle_counts, aes(x = genre, y = n, fill = artikelquelle)) +
-  geom_bar(stat = "identity", position = "stack") +
-  labs(title = "Häufigkeit der Genres nach Artikelquelle", x = "Genre", y = "Anzahl der Dokumente") +
-  theme_minimal() +
-  scale_fill_brewer(palette = "Set3") 
-
 #Key Topics
-# außenpolitik topic - europa = außen, 4-inhalte
+#4-inhalte
 btw_Datensatz_sample$filename[top_docs(key_topics, 10)[, 4]]
 
-#gemeinschaft, 2-btw
+#2-btw
 btw_Datensatz_sample$filename[top_docs(key_topics, 10)[, 2]]
 
-#werte - gutes verhätnis = Sicherheit, 3-parteien
+#3-parteien
 btw_Datensatz_sample$filename[top_docs(key_topics, 10)[, 3]]
 
-#innenpolitik = Wahlkampf, 1-politiker
+#1-politiker
 btw_Datensatz_sample$filename[top_docs(key_topics, 10)[, 1]]
 
 #Vorbereitung auf key_topics_covar
